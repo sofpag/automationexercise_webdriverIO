@@ -8,3 +8,7 @@ https://www.automationexercise.com/
 
 $ npm install
 $ npm run wdio
+
+## Test Cases
+
+https://www.automationexercise.com/test_cases
