@@ -3,10 +3,10 @@ import Page from "../pageobjects/page.js";
 import LoginPage from "../pageobjects/login.page.js";
 import HomePage from "../pageobjects/home.page.js";
 import SignupPage from "../pageobjects/signup.page.js";
-import AccountCreatedPage from "../pageobjects/accountCreated.page.js";
+import AccountPage from "../pageobjects/account.page.js";
 
 const newUserName = "testUserName";
-const newUserEmail = "asddd@examplee.com";
+const newUserEmail = "3asddd@examplee.com";
 
 const titleGender = "Mrs"; // Options (string): Mr; Mrs.
 const password = "testPassword";
@@ -58,25 +58,14 @@ describe("My application", () => {
       mobilePhone
     );
 
-    await AccountCreatedPage.checkUrl();
-    await AccountCreatedPage.btn.click();
+    await AccountPage.checkUrl("account_created");
+    await AccountPage.btn.click();
   });
 
-  it("should confirm login with new account", async () => {
-    await browser.pause(400);
-
-    
-  });
-
-  it("should delete new account and confirm it", async () => {
-    await browser.pause(400);
+  it("should confirm login with new account and delete it", async () => {
+    await expect(HomePage.username).toHaveText(newUserName);
+    await HomePage.deleteBtn.click();
+    await AccountPage.checkUrl("delete_account");
+    await AccountPage.btn.click();
   });
 });
-
-/*
-
-
-16. Verify that 'Logged in as username' is visible
-17. Click 'Delete Account' button
-18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
-*/

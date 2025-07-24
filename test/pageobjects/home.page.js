@@ -13,6 +13,14 @@ class HomePage extends Page {
   get title() {
     return $("h2=Features Items");
   }
+
+  get deleteBtn() {
+    return $(`[href="/delete_account"]`);
+  }
+
+  get username() {
+    return $("a b");
+  }
 }
 
 export default new HomePage();
