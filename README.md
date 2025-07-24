@@ -6,5 +6,5 @@ https://www.automationexercise.com/
 
 ## To run
 
-$ npm install
-$ npm run wdio
+- $ npm install
+- $ npm run wdio
