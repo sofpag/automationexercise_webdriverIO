@@ -1,15 +1,74 @@
-import { expect } from '@wdio/globals'
-import LoginPage from '../pageobjects/login.page.js'
-import SecurePage from '../pageobjects/secure.page.js'
+import { expect } from "@wdio/globals";
+import Page from "../pageobjects/page.js";
+import LoginPage from "../pageobjects/login.page.js";
+import HomePage from "../pageobjects/home.page.js";
+import SignupPage from "../pageobjects/signup.page.js";
+import AccountCreatedPage from "../pageobjects/accountCreated.page.js";
 
-describe('My Login application', () => {
-    it('should login with valid credentials', async () => {
-        await LoginPage.open()
+const newUserName = "testUserName";
+const newUserEmail = "asddd@examplee.com";
 
-        await LoginPage.login('tomsmith', 'SuperSecretPassword!')
-        await expect(SecurePage.flashAlert).toBeExisting()
-        await expect(SecurePage.flashAlert).toHaveText(
-            expect.stringContaining('You logged into a secure area!'))
-    })
-})
+const titleGender = "Mrs"; // Options (string): Mr; Mrs.
+const password = "testPassword";
+const BDDay = 3; // Options: days of a month in numbers, e.g. 20
+const BDMonth = 10; // Options: 1 to 12
+const BDYear = 1990; // Options: 1900 to 2021
 
+const firstName = "testName";
+const lastName = "testLastName";
+const street = "testAdress 123";
+const country = "Israel"; // Options:
+const state = "testState";
+const city = "testCity";
+const zipcode = 2000;
+const mobilePhone = 123456789;
+
+describe("My application", () => {
+  it("should open homepage", async () => {
+    await browser.url("https://www.automationexercise.com/");
+  });
+
+  it("should create a new user", async () => {
+    await HomePage.loginBtn.click();
+
+    await LoginPage.newUserTitle.isDisplayed();
+
+    await LoginPage.createUser(newUserName, newUserEmail);
+  });
+
+  it("should complete 'Account Information' section form", async () => {
+    await SignupPage.completeAccountInfo(
+      titleGender,
+      password,
+      BDDay,
+      BDMonth,
+      BDYear
+    );
+  });
+
+  it("should complete 'Address Information' section form", async () => {
+    await SignupPage.completeAddressInfo(
+      firstName,
+      lastName,
+      street,
+      country,
+      state,
+      city,
+      zipcode,
+      mobilePhone
+    );
+
+    await browser.pause(400);
+  });
+});
+
+/*
+
+completeAddressInfo
+
+14. Verify that 'ACCOUNT CREATED!' is visible
+15. Click 'Continue' button
+16. Verify that 'Logged in as username' is visible
+17. Click 'Delete Account' button
+18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
+*/
