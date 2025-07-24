@@ -46,7 +46,7 @@ describe("My application", () => {
     );
   });
 
-  it("should complete 'Address Information' section form", async () => {
+  it("should complete form and confirm user creation", async () => {
     await SignupPage.completeAddressInfo(
       firstName,
       lastName,
@@ -58,16 +58,24 @@ describe("My application", () => {
       mobilePhone
     );
 
+    await AccountCreatedPage.checkUrl();
+    await AccountCreatedPage.btn.click();
+  });
+
+  it("should confirm login with new account", async () => {
+    await browser.pause(400);
+
+    
+  });
+
+  it("should delete new account and confirm it", async () => {
     await browser.pause(400);
   });
 });
 
 /*
 
-completeAddressInfo
 
-14. Verify that 'ACCOUNT CREATED!' is visible
-15. Click 'Continue' button
 16. Verify that 'Logged in as username' is visible
 17. Click 'Delete Account' button
 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button

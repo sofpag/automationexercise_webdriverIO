@@ -2,17 +2,20 @@ import { $ } from "@wdio/globals";
 import Page from "./page.js";
 
 class AccountCreatedPage extends Page {
-  get homeBtn() {
-    return $('li [href~="/"]]');
+  get btn() {
+    return $('[data-qa="continue-button"]');
   }
 
-  get loginBtn() {
-    return $('[href~="/login"]');
-  }
-
-  get title() {
-    return $("h2=Features Items");
+  async checkUrl() {
+    let currentUrl = await browser.getUrl();
+    expect(currentUrl).toBe(
+      "https://www.automationexercise.com/account_created"
+    );
   }
 }
+
+/*
+
+*/
 
 export default new AccountCreatedPage();

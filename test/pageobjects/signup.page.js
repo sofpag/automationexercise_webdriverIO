@@ -104,7 +104,6 @@ class SignupPage extends Page {
     await this.firstNameInput.setValue(firstName);
     await this.lastNameInput.setValue(lastName);
     await this.addressInput.setValue(street);
-    // await $(`#country`).click();
     await $(`#country [value~="${country}"]`).click();
     await this.stateInput.setValue(state);
     await this.cityInput.setValue(city);
